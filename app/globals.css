@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background: linear-gradient(135deg, #F9F9FB 0%, #FFE5CC 25%, #AED6F1 75%, #A8E6C1 100%);
+  min-height: 100vh;
+  color: #333333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-quicksand), system-ui, sans-serif;
+  font-weight: 700;
+}
+
+/* Pastel Color Utilities */
+.text-pastel-red { color: #FF6B6B; }
+.text-pastel-blue { color: #5DADE2; }
+.text-pastel-green { color: #52C78A; }
+.text-pastel-orange { color: #F8B195; }
+
+.bg-pastel-red { background-color: #FF6B6B; }
+.bg-pastel-blue { background-color: #5DADE2; }
+.bg-pastel-green { background-color: #52C78A; }
+.bg-pastel-orange { background-color: #F8B195; }
+
+.bg-pastel-light-red { background-color: #FFB3B3; }
+.bg-pastel-light-blue { background-color: #AED6F1; }
+.bg-pastel-light-green { background-color: #A8E6C1; }
+.bg-pastel-light-orange { background-color: #FFE5CC; }
+
+/* Animations */
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

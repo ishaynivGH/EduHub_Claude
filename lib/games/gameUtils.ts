@@ -147,7 +147,7 @@ export function startListening(
       }, timeout)
     }
 
-    recognition.onresult = (event) => {
+    recognition.onresult = (event: any) => {
       clearTimeout(timeoutHandle)
 
       let transcript = ''
@@ -165,7 +165,7 @@ export function startListening(
       }
     }
 
-    recognition.onerror = (event) => {
+    recognition.onerror = (event: any) => {
       clearTimeout(timeoutHandle)
       console.error('Speech error:', event.error)
       onError?.(event.error)

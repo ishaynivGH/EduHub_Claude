@@ -50,3 +50,21 @@ h1, h2, h3, h4, h5, h6 {
 .animate-pop {
   animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+/* Mobile touch optimization - fix double-tap delay */
+button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Ensure clickable elements respond immediately */
+.game-option-button {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}

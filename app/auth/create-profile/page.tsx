@@ -25,7 +25,8 @@ export default function CreateProfile() {
     setLoading(true)
 
     try {
-      const { error } = await supabase.from('profiles').insert([
+      // Create the profile
+      const { error: profileError } = await supabase.from('profiles').insert([
         {
           user_id: user.id,
           name,
@@ -34,16 +35,29 @@ export default function CreateProfile() {
         },
       ])
 
-      if (error) throw error
+      if (profileError) throw profileError
 
-      // Create default free subscription
-      await supabase.from('subscriptions').insert([
+      // Create free trial subscription (30 days)
+      const now = new Date()
+      const trialEnds = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000)
+
+      const { error: subError } = await supabase.from('subscriptions').insert([
         {
           user_id: user.id,
           plan_type: 'free',
-          status: 'active',
+          billing_cycle: 'monthly',
+          status: 'trial',
+          trial_started_at: now.toISOString(),
+          trial_ends_at: trialEnds.toISOString(),
+          current_period_start: now.toISOString(),
+          current_period_end: trialEnds.toISOString(),
         },
       ])
+
+      if (subError && !subError.message.includes('duplicate')) {
+        // Ignore duplicate key error (subscription already exists)
+        throw subError
+      }
 
       router.push('/dashboard')
     } catch (err: any) {

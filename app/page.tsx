@@ -47,6 +47,11 @@ export default function Home() {
               Login
             </button>
           </Link>
+          <Link href="/pricing">
+            <button className="bg-white border-2 border-pastel-green hover:bg-green-50 text-pastel-green font-bold py-3 px-8 rounded-lg transition-all">
+              View Pricing
+            </button>
+          </Link>
         </div>
 
         {/* Features */}

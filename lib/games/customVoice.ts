@@ -43,15 +43,15 @@ export async function playCustomVoice(textOrId: string, context: string = 'defau
   return new Promise((resolve, reject) => {
     try {
       // Try to find audio clip by ID first
-      let audioPath = null
+      let audioPath: string | null = null
       const clipId = `${context}/${textOrId.toLowerCase()}`
 
       if (customAudioLibrary.has(clipId)) {
         const clip = customAudioLibrary.get(clipId)
-        audioPath = clip?.audioPath
+        audioPath = clip?.audioPath || null
       } else if (customAudioLibrary.has(textOrId)) {
         const clip = customAudioLibrary.get(textOrId)
-        audioPath = clip?.audioPath
+        audioPath = clip?.audioPath || null
       }
 
       if (!audioPath) {

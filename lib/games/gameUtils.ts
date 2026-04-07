@@ -1,7 +1,7 @@
 // Game utilities for audio, scoring, and speech recognition
 
 let preferredVoice: SpeechSynthesisVoice | null = null
-let recognition: SpeechRecognition | null = null
+let recognition: any = null
 
 // Initialize best voice for text-to-speech
 export function initializeBestVoice() {

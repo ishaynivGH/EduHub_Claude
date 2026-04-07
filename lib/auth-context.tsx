@@ -1,13 +1,13 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { Session } from '@supabase/supabase-js'
+import { Session, User } from '@supabase/supabase-js'
 import { supabase } from './supabase'
 
 interface AuthContextType {
   session: Session | null
   loading: boolean
-  user: any
+  user: User | null
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     // Check current session

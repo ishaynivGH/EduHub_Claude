@@ -1,13 +1,13 @@
-'use client'
-
 export const dynamic = 'force-dynamic'
 
-import { useState } from 'react'
+'use client'
+
+import { useState, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/auth-context'
 
-export default function CreateProfile() {
+function CreateProfileContent() {
   const router = useRouter()
   const { user } = useAuth()
   const [name, setName] = useState('')
@@ -156,5 +156,13 @@ export default function CreateProfile() {
         </p>
       </div>
     </main>
+  )
+}
+
+export default function CreateProfile() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreateProfileContent />
+    </Suspense>
   )
 }

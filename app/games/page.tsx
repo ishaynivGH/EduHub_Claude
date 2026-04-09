@@ -1,7 +1,8 @@
-'use client'
-
 export const dynamic = 'force-dynamic'
 
+'use client'
+
+import { Suspense } from 'react'
 import { useAuth } from '@/lib/auth-context'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -14,7 +15,7 @@ interface Profile {
   name: string
 }
 
-export default function GamesPage() {
+function GamesPageContent() {
   const { session, loading } = useAuth()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -198,5 +199,13 @@ export default function GamesPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function GamesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <GamesPageContent />
+    </Suspense>
   )
 }
